@@ -1,0 +1,19 @@
+{
+  "name": "food-list-creator",
+  "version": "0.0.1",
+  "description": "...",
+  "main": "index.js",
+  "scripts": {
+    "server": "http-server -c-1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raulfdm/food-list-creator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/raulfdm/food-list-creator/issues"
+  },
+  "homepage": "https://github.com/raulfdm/food-list-creator#readme"
+}
