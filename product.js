@@ -44,7 +44,7 @@ Product.prototype.generateId = function () {
 Product.prototype.getInnerHTML = function () {
     return `
         <li class="list-group-item product-list__item justify-content-between" data-id="${this.id}">
-            ${this.quantity}x - ${this.name} - € ${this.total} (€ ${this.price} each)
+            ${this.quantity}x - ${this.name} - € ${this.total} ${this.quantity!=1 ? `(€ ${this.price} each)`: ""}
             <button type="button" class="btn btn-danger badge badge-danger badge-pill btn-remove-product"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
         </li>
     `
