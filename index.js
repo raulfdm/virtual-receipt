@@ -122,9 +122,9 @@ const addEventToBtnRemove = function () {
 
 const removeSpecificElement = function (event) {
   const answer = confirm('Do you really want to remove this item?');
-  if (answer) {
-    const parent = event.target.parentNode.parentNode
-    console.log(parent)
+  if (answer && event.currentTarget.nodeName==="BUTTON") {
+    const parent = event.currentTarget.parentNode
+  
     const id = parent.dataset.id
     const newProductList = listOfProducts.filter(product => product.id !== id)
     parent.remove()
