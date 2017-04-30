@@ -1,0 +1,113 @@
+.github-corner:hover .octo-arm {
+    animation: octocat-wave 560ms ease-in-out
+}
+
+@keyframes octocat-wave {
+    0%,
+    100% {
+        transform: rotate(0)
+    }
+    20%,
+    60% {
+        transform: rotate(-25deg)
+    }
+    40%,
+    80% {
+        transform: rotate(10deg)
+    }
+}
+
+@media (max-width:500px) {
+    .github-corner:hover .octo-arm {
+        animation: none
+    }
+    .github-corner .octo-arm {
+        animation: octocat-wave 560ms ease-in-out
+    }
+}
+
+.app-title {
+    text-align: center;
+    margin: 2rem auto;
+}
+
+.container {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.product-price-container {
+    width: 10rem;
+    margin-left: 1rem;
+}
+
+.container-list {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+
+.container-list__display-total {
+    text-align: right;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.container-list__display-total>p {
+    width: 100%;
+    margin: 0;
+}
+
+.container-list>ul {
+    border-radius: 0.2rem;
+    border: 1px solid rgba(0, 0, 0, .125);
+}
+
+.product-list {
+    max-height: 18rem;
+    min-height: 5rem;
+    overflow: auto;
+}
+
+.product-list__title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.product-list__title>* {
+    text-align: center;
+}
+
+.btn-remove-product:hover {
+    cursor: pointer;
+}
+
+.btn-remove-product>.fa-trash-o {
+    font-size: 1rem;
+}
+
+.container-list__btn-clean {
+    margin: 2rem 0;
+    width: 6.25rem;
+}
+
+#container-list__display-total__value {
+    font-size: 1.5rem;
+}
+
+#form-product>button {
+    margin-left: .5rem;
+}
+
+@media (min-height: 320px) {
+    .container{
+        margin-top: 2rem;
+    }
+    .container-list {
+        min-width: 100%;
+    }
+
+}
