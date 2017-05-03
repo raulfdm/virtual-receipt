@@ -4,7 +4,8 @@
   "description": "...",
   "main": "index.js",
   "scripts": {
-    "server": "http-server -c-1"
+    "start": "http-server src/ -c-1",
+    "send-commits": "git push origin master && git push origin gh-pages"
   },
   "repository": {
     "type": "git",
