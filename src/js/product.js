@@ -3,6 +3,7 @@ const Product = function () {
     this.name;
     this.quantity;
     this.price;
+    this.isPerItem;
     this.total;
 }
 Product.prototype.setName = function (name) {
@@ -10,15 +11,26 @@ Product.prototype.setName = function (name) {
     return this;
 }
 Product.prototype.setQuantity = function (quantity) {
-    this.quantity = quantity;
+    this.quantity = parseFloat(quantity);
     return this;
 }
 Product.prototype.setPrice = function (price) {
-    this.price = price;
+    this.price = parseFloat(price);
+    return this;
+}
+Product.prototype.calculateMethod = function(isPerItem){
+    this.isPerItem = isPerItem
     return this;
 }
 Product.prototype.calculateTotal = function () {
-    this.total = parseFloat((this.quantity * this.price).toFixed(2))
+    
+    if(this.isPerItem){
+        this.total = parseFloat((this.quantity * this.price).toFixed(2))
+    }else{
+        this.total = this.price;
+        this.price = parseFloat((this.total/this.quantity).toFixed(2))
+    }
+    
     return this;
 }
 Product.prototype._validateInformations = function () {
@@ -26,9 +38,9 @@ Product.prototype._validateInformations = function () {
     if (!this.name) {
         error = "Name needs to be defined"
     } else if (!this.price) {
-        error = "Name needs to be defined"
+        error = "Price needs to be defined"
     } else if (!this.quantity) {
-        error = "Name needs to be defined"
+        error = "Quantity needs to be defined"
     }
     if (error) {
         throw new Error(error);
@@ -36,17 +48,18 @@ Product.prototype._validateInformations = function () {
     return true;
 }
 Product.prototype.generateId = function () {
-    if(this._validateInformations){
-        this.id = new Date().getTime()+this.name+this.price+this.quantity
+    if(this._validateInformations()){
+        this.id = (new Date().getTime()+this.name+this.price+this.quantity).replace(/\s/g, '').toUpperCase();
     }
     return this;
 }
 Product.prototype.getInnerHTML = function () {
     return `
-        <li class="list-group-item product-list__item justify-content-between" data-id="${this.id}">
-            ${this.quantity}x - ${this.name} - € ${this.total} ${this.quantity!=1 ? `(€ ${this.price} each)`: ""}
-            <button type="button" class="btn btn-danger badge badge-danger badge-pill btn-remove-product"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-        </li>
+        <label class="checkbox product-list__item" data-id="${this.id}">
+                        <input type="checkbox">
+                            ${this.quantity}x - ${this.name} - € 5.78 ${this.quantity>1 ? `(€ ${this.total/this.quantity} each)` : ''}
+                        </input>
+        </label>
     `
 }
 
