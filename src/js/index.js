@@ -54,7 +54,7 @@ $btnCleanList.addEventListener('click', function (e) {
 })
 
 // 4. Create a function to mount a Product with this values (CHAIN FUNCTION)
-const createProduct = function (product) {
+const createeProduct = function (product) {
   return new Product()
     .setName(product.name)
     .setPrice(product.price)
@@ -72,7 +72,7 @@ const saveProduct = function (product) {
 const cleanProductList = function () {
   let arrayOfProductNodes = [...document.querySelectorAll('.product-list__item')]
 
-  arrayOfProductNodes.map(node => $productList.removeChild(node))
+  arrayOfProductNodes.map(node => node.remove())
   listOfProducts.length = 0
   localStorage.removeItem('listOfProducts')
 }
