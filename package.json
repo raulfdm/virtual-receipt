@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "http-server src/ -c-1",
+    "test": "jest",
     "send-commits": "git push origin master && git push origin gh-pages"
   },
   "repository": {
@@ -16,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/raulfdm/food-list-creator/issues"
   },
-  "homepage": "https://github.com/raulfdm/food-list-creator#readme"
+  "homepage": "https://github.com/raulfdm/food-list-creator#readme",
+  "devDependencies": {
+    "jest": "^19.0.2"
+  }
 }
