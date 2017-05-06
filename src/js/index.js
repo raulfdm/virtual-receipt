@@ -1,72 +1,80 @@
-const application = function () {
-  this._localStorage = 'list_of_products'
-  this._productList = []
-  this.product = {}
-  this.total = 0.0
-  this._veryLocalStorage()
+const application = {
+  productList: [],
+  total: 0.0
 }
-application.prototype.getDecimal = function (value) {
-  return parseFloat(value.toFixed(2))
-}
-application.prototype._veryLocalStorage = function () {
-  const list = JSON.parse(localStorage.getItem(this._localStorage))
-  if (list) {
-    list.map(product => this.createProduct(product)._saveProduct())
-    this.loadGrid()
+
+const LOCAL_STORAGE = {
+  space: 'list_of_products',
+  cleanList: function () {
+    localStorage.removeItem(this.space)
+  },
+  update: function (list) {
+    if (!list)
+      throw new Error('To update localStorage, some value is required')
+    localStorage.setItem(this.space, JSON.stringify(list))
+    return this.getStorage()
+  },
+  getStorage: function () {
+    const listOfObjects = JSON.parse(localStorage.getItem(this.space)) || []
+    return listOfObjects.map(object => {
+      return createProduct(object)
+    })
   }
 }
-application.prototype.createProduct = function (product) {
-  debugger
-  this.product = new Product()
+
+const getDecimal = (value) => {
+  return parseFloat(Number(value).toFixed(2))
+}
+
+const createProduct = (product) => {
+  return new Product()
     .setName(product.name)
     .setQuantity(product.quantity)
     .setPrice(product.price)
-    .calculateMethod(product.isPerItem ? true : false)
-    .generateId()
+    .setId(product.id)
+    .calculateMethod(product.isPerItem
+      ? true
+      : false)
     .calculateTotal()
+}
 
-  return this
+const loadGrid = (listOfProducts) => {
+  const $listContent = document.querySelector('.list-content')
+  const result = listOfProducts.reduce((prev, product) => prev += product.getInnerHTML(), '')
+
+  $listContent.innerHTML = result
+  updateTotal(listOfProducts)
 }
-application.prototype._saveProduct = function () {
-  this
-    ._productList
-    .push(this.product)
-  localStorage.setItem(this._localStorage, JSON.stringify(this._productList))
-  return this
+
+const saveProduct = (product) => {
+  application
+    .productList
+    .push(product)
+
+  loadGrid(LOCAL_STORAGE.update(application.productList))
 }
-application.prototype._resetProduct = function () {
-  this.product = new Product()
-  return this
-}
-application.prototype.cleanProductList = function () {
+
+const cleanProductList = () => {
   let arrayOfProductNodes = [...document.querySelectorAll('.product-list__item')]
   arrayOfProductNodes.map(node => node.remove())
-  this._productList.length = 0
-  localStorage.removeItem(this._localStorage)
-  return this
+  application.productList.length = 0
+  LOCAL_STORAGE.cleanList()
+  updateTotal()
 }
-application.prototype.loadGrid = function () {
-  const $listContent = document.querySelector('.list-content')
-  const result = this._productList.reduce((prev, product) => prev += product.getInnerHTML(), '')
-  $listContent.innerHTML = result
-  this._updateTotal()
-  return this
-}
-application.prototype._updateTotal = function () {
+
+const updateTotal = (productList = []) => {
   const $totalBill = document.querySelector('.list-footer__total-value')
   let newTotal = 0.0
-  if (this._productList.length > 0) {
-    newTotal = this
-      ._productList
-      .reduce((amount, product) => this.getDecimal(amount + product.total), 0.0)
-  }else {
+  if (productList.length > 0) {
+    newTotal = productList.reduce((amount, product) => getDecimal(amount + product.total), 0.0)
+  } else {
     newTotal = '0.00'
   }
-  $totalBill.textContent = newTotal
 
-  return this
+  $totalBill.textContent = newTotal
 }
-application.prototype.cleanInputs = function () {
+
+const cleanInputs = () => {
   document
     .querySelector('#product-name')
     .value = ''
@@ -78,13 +86,19 @@ application.prototype.cleanInputs = function () {
     .value = ''
 }
 
-/*PENDING*/
-application.prototype.removeSpecificElement = function () {}
+const deleteProduct = (idProduct) => {
+  const newList = application.productList.filter(product => product.id !== parseInt(idProduct))
+  application.productList = newList
+  LOCAL_STORAGE.update(newList)
+  loadGrid(newList)
+}
 
 const $buttonInsertItem = document.querySelector('#btn-insert')
 const $buttonCleanList = document.querySelector('#btn-clean')
+const $buttonDeleteElements = document.querySelector('#btn-delete-itens')
 
-const app = new application()
+application.productList = LOCAL_STORAGE.getStorage()
+loadGrid(application.productList)
 
 $buttonInsertItem.addEventListener('click', function (event) {
   const $inputs = {
@@ -93,20 +107,30 @@ $buttonInsertItem.addEventListener('click', function (event) {
     price: document.querySelector('#product-price'),
     calcMethod: document.querySelector('#product-method__item')
   }
-
-  app
-    .createProduct({
-      name: $inputs.name.value,
-      quantity: $inputs.qtde.value,
-      price: $inputs.price.value,
-      isPerItem: $inputs.calcMethod.checked
-    })
-    ._saveProduct()
-    ._resetProduct()
-    .loadGrid()
-    .cleanInputs()
+  const product = createProduct({name: $inputs.name.value, quantity: $inputs.qtde.value, price: $inputs.price.value, isPerItem: $inputs.calcMethod.checked})
+  saveProduct(product)
+  cleanInputs()
 })
 
 $buttonCleanList.addEventListener('click', function (event) {
-  app.cleanProductList().loadGrid()
+  if (confirm('Do you really want to clean this list?')) {
+    cleanProductList()
+  }
 })
+
+$buttonDeleteElements.addEventListener('click', function (e) {
+  const $list = document.querySelectorAll('.product-list__item')
+  const productsChecked = [...$list].filter(element => element.children[0].checked)
+  if (productsChecked.length > 0) {
+    if (confirm(`Do you really like to delete ${productsChecked.length} itens?`)) {
+      productsChecked.map(product => {
+        deleteProduct(product.dataset.id)
+        product.remove()
+      })
+    }
+  }
+})
+
+window.onerror = (e) => {
+  console.warn('AQUI>', e)
+}
