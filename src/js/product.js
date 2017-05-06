@@ -4,6 +4,7 @@ const Product = function () {
   this.quantity
   this.price
   this.isPerItem
+	this.priceUn
   this.total
 }
 
@@ -31,16 +32,17 @@ Product.prototype.calculateTotal = function () {
   this._validateInformations()
 
   if (this.isPerItem) {
-    this.total = parseFloat((this.quantity * this.price).toFixed(2))
+		this.total = this._parseDecimal(this.quantity*this.price)
+		this.priceUn = this.price
   } else {
     this.total = this.price
-    this.price = parseFloat((this.total / this.quantity).toFixed(2))
+    this.priceUn = this._parseDecimal(this.total / this.quantity)
   }
 
   return this
 }
 Product.prototype._parseDecimal = function (value) {
-  return parseFloat(value.toFixed(2))
+  return this._stringToFloat(value.toFixed(2))
 }
 Product.prototype._validateInformations = function () {
   let error = ''
@@ -51,10 +53,9 @@ Product.prototype._validateInformations = function () {
   } else if (!this.quantity) {
     error = 'Quantity needs to be defined'
   } else if (!this.isPerItem) {
-    console.log(this.isPerItem, typeof this.isPerItem, typeof this.isPerItem === 'boolean')
     if (typeof this.isPerItem !== 'boolean') {
       error = 'Calculate method must be a boolean.'
-    }else if(this.isPerItem === undefined || this.isPerItem === null) {
+    }else if (this.isPerItem === undefined || this.isPerItem === null) {
       error = 'Calculate Method (isPerItem) needs to be defined'
     }
   } else if (isNaN(this.price)) {
@@ -67,13 +68,17 @@ Product.prototype._validateInformations = function () {
   }
   return true
 }
-Product.prototype.generateId = function () {
-  if (this._validateInformations()) {
-    this.id = (new Date().getTime() + this.name + this.price + this.quantity)
-      .replace(/\s/g, '')
-      .toUpperCase()
-    return this
+Product.prototype.setId = function (id) {
+  if (id) {
+    this.id = parseInt(id)
+  }else {
+    this._generateId()
   }
+  return this
+}
+Product.prototype._generateId = function () {
+  this.id = new Date().getTime() + Math.floor(Math.random() * 100000000)
+  return this
 }
 Product.prototype.getInnerHTML = function () {
   if (this._validateInformations()) {
@@ -81,7 +86,7 @@ Product.prototype.getInnerHTML = function () {
         <label class="checkbox product-list__item" data-id="${this.id}">
                         <input type="checkbox">
                             ${this.quantity}x - ${this.name} - € ${this.total} ${this.quantity > 1
-            ? `(€ ${this._parseDecimal(this.total / this.quantity)} each)`
+            ? `(€ ${this.priceUn} each)`
             : ''}
                         </input>
         </label>
