@@ -36,6 +36,7 @@
                     <label class="label">Product Name</label>
                     <p class="control">
                         <input id="product-name" tabindex="1" class="input" type="text" placeholder="Sweet potato package 1kg">
+												 <span class="help hidden">Name is required</span>
                     </p>
                 </section>
 
@@ -43,6 +44,7 @@
                     <label class="label">Qtde.</label>
                     <p class="control">
                         <input id="product-qtde" tabindex="2" class="input" type="number" step="any" min="0.0" value="1">
+												<span class="help hidden">Quantity is required</span>
                     </p>
                 </section>
 
@@ -53,6 +55,7 @@
                         <span class="icon is-small is-left">
                             <i class="fa fa-money"></i>
                         </span>
+												<span class="help hidden">Price is required</span>
                     </p>
                 </section>
 
@@ -105,6 +108,7 @@
     <script src="./src/js/product.js"></script>
     <script src="./src/js/index.js"></script>
     <script src="./src/js/masks.js"></script>
+    <script src="./src/js/clipboard.config.js"></script>
 </body>
 
 </html>

@@ -74,16 +74,15 @@ const updateTotal = (productList = []) => {
 		$totalBill.textContent = newTotal
 }
 
-const cleanInputs = () => {
-		document
-				.querySelector('#product-name')
-				.value = ''
-		document
-				.querySelector('#product-qtde')
-				.value = 1
-		document
-				.querySelector('#product-price')
-				.value = ''
+const cleanInputs = ($inputs) => {
+		const {name, qtde, price} = $inputs;
+		name.value = '';
+		qtde.value = 1;
+		price.value = '';
+		handleErrorClass.removeClass(name, 'is-success')
+		handleErrorClass.removeClass(qtde, 'is-success')
+		handleErrorClass.removeClass(price, 'is-success')
+
 }
 
 const deleteProduct = (idProduct) => {
@@ -108,9 +107,11 @@ const insertItem = function (e) {
 				price: document.querySelector('#product-price'),
 				calcMethod: document.querySelector('#product-method__item')
 		}
+		if (!validateForm($inputs))
+				return;
 		const product = createProduct({name: $inputs.name.value, quantity: $inputs.qtde.value, price: $inputs.price.value, isPerItem: $inputs.calcMethod.checked})
 		saveProduct(product)
-		cleanInputs()
+		cleanInputs($inputs)
 }
 
 const cleanList = function (e) {
@@ -137,6 +138,70 @@ const copyItems = function () {
 
 }
 
+const handleErrorClass = {
+		errorClass: 'is-danger',
+		hiddenClass: 'hidden',
+		successClass: 'is-success',
+		removeClass(element, className) {
+				element
+						.classList
+						.remove(className)
+		},
+		addClass(element, className) {
+				element
+						.classList
+						.add(className)
+		},
+		on(element) {
+				this.addClass(element, this.errorClass);
+				[...element.parentNode.children].map(child => {
+						if (child.classList.contains('help')) {
+								this.addClass(child, this.errorClass)
+								this.removeClass(child, this.hiddenClass)
+						}
+				})
+		},
+		off(element) {
+				this.removeClass(element, this.errorClass);
+				this.addClass(element, this.successClass);
+				[...element.parentNode.children].map(child => {
+						if (child.classList.contains('help')) {
+								this.removeClass(child, this.errorClass);
+								this.addClass(child, this.hiddenClass);
+						}
+				})
+		}
+}
+
+const validateForm = function ($inputs) {
+		let validate = true;
+		const {name, price, qtde} = $inputs;
+
+		if (qtde.value <= 0) {
+				qtde.focus()
+				handleErrorClass.on(qtde)
+				validate = false;
+		} else {
+				handleErrorClass.off(qtde)
+		}
+		if (price.value <= 0) {
+				price.focus()
+				handleErrorClass.on(price)
+				validate = false;
+		} else {
+				handleErrorClass.off(price)
+		}
+		if (!name.value) {
+				handleErrorClass.on(name)
+				name.focus();
+				validate = false;
+		} else {
+				handleErrorClass.off(name)
+		}
+
+		return validate;
+}
+
 $buttonInsertItem.addEventListener('click', insertItem)
 window.addEventListener('keypress', function (e) {
 		if (e.keyCode !== 13)
@@ -144,18 +209,3 @@ window.addEventListener('keypress', function (e) {
 		insertItem()
 })
 $buttonDeleteElements.addEventListener('click', cleanList)
-
-new Clipboard('#btn-copy', {
-				text: trigger => copyItems()
-		}).on('success', function (e) {
-		e
-				.trigger
-				.classList
-				.toggle('tooltiped')
-		setTimeout(function () {
-				e
-						.trigger
-						.classList
-						.toggle('tooltiped')
-		}, 1000)
-})
