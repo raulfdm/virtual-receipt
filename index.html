@@ -35,21 +35,21 @@
                 <section class="container__form-product__inputs__product-name field">
                     <label class="label">Product Name</label>
                     <p class="control">
-                        <input id="product-name" class="input" type="text" placeholder="Sweet potato package 1kg">
+                        <input id="product-name" tabindex="1" class="input" type="text" placeholder="Sweet potato package 1kg">
                     </p>
                 </section>
 
                 <section class="container__form-product__inputs__product-qtde field">
                     <label class="label">Qtde.</label>
                     <p class="control">
-                        <input id="product-qtde" class="input" type="number" step="any" min="0.0" value="1">
+                        <input id="product-qtde" tabindex="2" class="input" type="number" step="any" min="0.0" value="1">
                     </p>
                 </section>
 
                 <section class="container__form-product__inputs__product-price field">
                     <label class="label">Price</label>
                     <p class="control has-icons-left">
-                        <input id="product-price" class="input" type="tel" step="any" placeholder="0.00">
+                        <input id="product-price"  tabindex="3" class="input" type="tel" step="any" placeholder="0.00">
                         <span class="icon is-small is-left">
                             <i class="fa fa-money"></i>
                         </span>
@@ -64,10 +64,10 @@
                         <div class="field is-narrow">
                             <div class="control product-method">
                                 <label class="radio">
-                                    <input id="product-method__item" type="radio" name="member" checked>Per Item</input>
+                                    <input id="product-method__item" tabindex="4" type="radio" name="member" checked>Per Item</input>
                                 </label>
                                 <label class="radio">
-                                    <input id="product-method__total" type="radio" name="member">Total Price</input>
+                                    <input id="product-method__total" tabindex="5" type="radio" name="member">Total Price</input>
                                 </label>
                             </div>
                         </div>
@@ -76,7 +76,7 @@
 
             </section>
             <section class="container__product-form__buttons">
-                <button class="button" id="btn-insert">Insert Item</button>
+                <button class="button" id="btn-insert"  tabindex="6">Insert Item</button>
             </section>
         </article>
 
