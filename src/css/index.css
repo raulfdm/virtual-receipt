@@ -1,9 +1,10 @@
-@import url('https://fonts.googleapis.com/css?family=Raleway|Righteous');
+@import './git-corner.css';
+@import url('https://fonts.googleapis.com/css?family=Raleway|Lobster+Two');
 
 :root {
 	--primary: #34495e;
 	--secondary: #ecf0f1;
-	--font-title: 'Righteous',cursive;
+	--font-title: 'Lobster Two',cursive;
 	--font-body: 'Raleway',sans-serif;
 }
 
@@ -39,7 +40,7 @@ body {
 }
 
 .header>.header__app-title {
-	font-size: 2.5rem;
+	font-size: 3.5rem;
 	text-align: center;
 	font-family: var(--font-title)
 }
