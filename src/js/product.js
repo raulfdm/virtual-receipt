@@ -85,11 +85,14 @@ Product.prototype.getInnerHTML = function () {
     return `
         <label class="checkbox product-list__item" data-id="${this.id}">
                         <input type="checkbox">
-                            ${this.quantity}x - ${this.name} - € ${this.total} ${this.quantity > 1
-            ? `(€ ${this.priceUn} each)`
-            : ''}
+                            ${this.toString()}
                         </input>
         </label>
     `
   }
+}
+Product.prototype.toString = function(){
+	return `${this.quantity}x - ${this.name} - € ${this.total} ${this.quantity > 1
+            ? `(€ ${this.priceUn} each)`
+            : ''}`
 }
