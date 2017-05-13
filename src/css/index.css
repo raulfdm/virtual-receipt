@@ -13,8 +13,14 @@
 html {
 	background-color: var(--primary);
 	color: var(--secondary);
-	height: 100%;
 	box-sizing: border-box;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
 }
 
 h1,
@@ -33,18 +39,20 @@ strong {
 }
 
 body {
-	position: relative;
-	min-height: 100%;
 	flex-direction: column;
 	font-family: var(--font-body);
-	padding-bottom: 3rem;
+}
+
+#wrapper {
+	min-height: 100%;
+	position: relative;
 }
 
 
 /*HEADER*/
 
 .header {
-	margin: 3.3rem 0;
+	padding: 3.3rem 0;
 }
 
 .header>.header__app-title {
@@ -210,10 +218,10 @@ main.container {
 .footer {
 	padding: .5rem;
 	text-align: center;
-	right: 0;
+	width: 100%;
+	position: absolute;
 	bottom: 0;
 	left: 0;
-	position: absolute;
 }
 
 .footer p {
