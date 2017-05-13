@@ -80,14 +80,16 @@ main.container {
 }
 
 .container__form-product__inputs__product-price {
-	width: 60%;
+	width: 50%;
 }
 
 
 .container__product-form__buttons {
 	margin: 2rem .5rem;
 }
-
+.container__product-form__buttons i{
+	margin: 0 .5rem;
+}
 
 /*List of Products*/
 
@@ -130,6 +132,7 @@ main.container {
 	font-size: 1.3rem;
 	border-top: 1px solid var(--primary);
 	display: flex;
+	align-items: center;
 	justify-content: space-between;
 }
 
@@ -184,7 +187,7 @@ main.container {
 	opacity: 0;
 }
 
-@media (min-width: 974px) {
+@media screen and (min-width: 974px) {
 	.container {
 		display: flex;
 		justify-content: space-between;
