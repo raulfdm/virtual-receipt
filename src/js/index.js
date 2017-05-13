@@ -77,6 +77,7 @@ const updateTotal = (productList = []) => {
 const cleanInputs = ($inputs) => {
 		const {name, qtde, price} = $inputs;
 		name.value = '';
+		name.focus();
 		qtde.value = 1;
 		price.value = '';
 		handleErrorClass.removeClass(name, 'is-success')
@@ -177,19 +178,19 @@ const validateForm = function ($inputs) {
 		let validate = true;
 		const {name, price, qtde} = $inputs;
 
-		if (qtde.value <= 0) {
-				qtde.focus()
-				handleErrorClass.on(qtde)
-				validate = false;
-		} else {
-				handleErrorClass.off(qtde)
-		}
 		if (price.value <= 0) {
 				price.focus()
 				handleErrorClass.on(price)
 				validate = false;
 		} else {
 				handleErrorClass.off(price)
+		}
+		if (qtde.value <= 0) {
+				qtde.focus()
+				handleErrorClass.on(qtde)
+				validate = false;
+		} else {
+				handleErrorClass.off(qtde)
 		}
 		if (!name.value) {
 				handleErrorClass.on(name)
