@@ -1,11 +1,10 @@
 @import './git-corner.css';
 @import url('https://fonts.googleapis.com/css?family=Raleway|Lobster+Two');
-
 :root {
 	--primary: #34495e;
 	--secondary: #ecf0f1;
-	--font-title: 'Lobster Two',cursive;
-	--font-body: 'Raleway',sans-serif;
+	--font-title: 'Lobster Two', cursive;
+	--font-body: 'Raleway', sans-serif;
 }
 
 
@@ -14,6 +13,8 @@
 html {
 	background-color: var(--primary);
 	color: var(--secondary);
+	height: 100%;
+	box-sizing: border-box;
 }
 
 h1,
@@ -27,20 +28,27 @@ p {
 	color: var(--secondary) !important;
 }
 
+strong {
+	color: inherit;
+}
+
 body {
+	position: relative;
+	min-height: 100%;
 	flex-direction: column;
-	font-family: var(--font-body)
+	font-family: var(--font-body);
+	padding-bottom: 3rem;
 }
 
 
 /*HEADER*/
 
 .header {
-	margin: 3rem 0;
+	margin: 3.3rem 0;
 }
 
 .header>.header__app-title {
-	font-size: 3.5rem;
+	font-size: 3rem;
 	text-align: center;
 	font-family: var(--font-title)
 }
@@ -84,13 +92,14 @@ main.container {
 	width: 50%;
 }
 
-
 .container__product-form__buttons {
 	margin: 2rem .5rem;
 }
-.container__product-form__buttons i{
+
+.container__product-form__buttons i {
 	margin: 0 .5rem;
 }
+
 
 /*List of Products*/
 
@@ -99,7 +108,8 @@ main.container {
 }
 
 .container__product-list {
-	width: 25rem;
+	width: 80%;
+	max-width: 25rem;
 	margin: 0 auto;
 }
 
@@ -139,12 +149,13 @@ main.container {
 	color: #fff !important;
 }
 
-.list-footer .button {
-	margin: 0 1rem;
+.list-action {
+	display: inline;
 }
 
-.list-footer__total {
-	width: 100%;
+.list-action .button:not(:last-child) {
+	margin-right: 1rem;
+	display: inline-block;
 }
 
 .tooltiped {
@@ -152,7 +163,6 @@ main.container {
 	z-index: 2;
 	cursor: pointer;
 }
-
 
 .tooltiped:before {
 	position: absolute;
@@ -182,8 +192,8 @@ main.container {
 	transition: all .4s;
 }
 
-.hidden{
-	opacity: 0;
+.hidden {
+	display: none;
 }
 
 @media screen and (min-width: 974px) {
@@ -192,4 +202,26 @@ main.container {
 		justify-content: space-between;
 		align-items: flex-start;
 	}
+}
+
+
+/* Footer */
+
+.footer {
+	padding: .5rem;
+	text-align: center;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	position: absolute;
+}
+
+.footer p {
+	color: var(--primary) !important;
+	font-size: .8rem;
+}
+
+.footer i {
+	font-size: .6rem;
+	margin-top: 5px;
 }
