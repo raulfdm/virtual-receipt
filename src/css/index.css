@@ -111,8 +111,6 @@ main.container {
 	border-bottom: 1px solid var(--primary);
 }
 
-.container__product-list .list-header p {}
-
 .container__product-list .list-content {
 	font-size: 0.85rem;
 	display: flex;
@@ -193,7 +191,4 @@ main.container {
 		justify-content: space-between;
 		align-items: flex-start;
 	}
-	/*.container__product-list {
-		width: 500px;
-	}*/
 }
