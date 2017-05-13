@@ -1,6 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway|Righteous');
+
 :root {
 	--primary: #34495e;
 	--secondary: #ecf0f1;
+	--font-title: 'Righteous',cursive;
+	--font-body: 'Raleway',sans-serif;
 }
 
 
@@ -24,6 +28,7 @@ p {
 
 body {
 	flex-direction: column;
+	font-family: var(--font-body)
 }
 
 
@@ -36,6 +41,7 @@ body {
 .header>.header__app-title {
 	font-size: 2.5rem;
 	text-align: center;
+	font-family: var(--font-title)
 }
 
 
@@ -50,7 +56,7 @@ main.container {
 
 .container__product-form {
 	width: 80%;
-	max-width: 368px;
+	max-width: 24rem;
 	margin: 0 auto;
 }
 
@@ -64,22 +70,22 @@ main.container {
 	margin: 0 .5rem;
 }
 
-.container__form-product__inputs__product-name {}
+.container__form-product__inputs__product-name,
+.container__form-product__inputs__calculate-method {
+	width: 100%;
+}
 
 .container__form-product__inputs__product-qtde {
-	width: 4rem;
+	width: 30%;
 }
-
-.container__form-product__inputs__calculate-method {}
 
 .container__form-product__inputs__product-price {
-	width: 10rem;
+	width: 60%;
 }
 
+
 .container__product-form__buttons {
-	margin: 2rem 0;
-	display: flex;
-	justify-content: space-around;
+	margin: 2rem .5rem;
 }
 
 
@@ -90,7 +96,7 @@ main.container {
 }
 
 .container__product-list {
-	width: 95%;
+	width: 25rem;
 	margin: 0 auto;
 }
 
@@ -109,7 +115,7 @@ main.container {
 	font-size: 0.85rem;
 	display: flex;
 	flex-direction: column;
-	max-height: 25rem;
+	height: 12rem;
 	overflow: auto;
 }
 
@@ -184,7 +190,7 @@ main.container {
 		justify-content: space-between;
 		align-items: flex-start;
 	}
-	.container__product-list {
+	/*.container__product-list {
 		width: 500px;
-	}
+	}*/
 }
