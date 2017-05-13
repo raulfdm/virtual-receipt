@@ -131,6 +131,50 @@ main.container {
 	color: #fff !important;
 }
 
+.list-footer .button {
+	margin: 0 1rem;
+}
+
+.list-footer__total {
+	width: 100%;
+}
+
+.tooltiped {
+	position: relative;
+	z-index: 2;
+	cursor: pointer;
+}
+
+
+.tooltiped:before {
+	position: absolute;
+	left: 120%;
+	padding: 7px;
+	border-radius: 3px;
+	background-color: hsla(0, 0%, 20%, 0.9);
+	color: #fff;
+	content: attr(data-tooltip);
+	text-align: center;
+	font-size: .8rem;
+	line-height: 1.2;
+	transition: all .4s;
+}
+
+.tooltiped:after {
+	position: absolute;
+	left: 120%;
+	margin-left: -5px;
+	width: 0;
+	border-right: 5px solid hsla(0, 0%, 20%, 0.9);
+	border-top: 5px solid transparent;
+	border-bottom: 5px solid transparent;
+	content: " ";
+	font-size: 0;
+	line-height: 0;
+	transition: all .4s;
+}
+
+
 @media (min-width: 974px) {
 	.container {
 		display: flex;

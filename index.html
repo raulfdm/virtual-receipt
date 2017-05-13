@@ -77,11 +77,11 @@
             </section>
             <section class="container__product-form__buttons">
                 <button class="button" id="btn-insert">Insert Item</button>
-                <button class="button is-danger" id="btn-clean">Clean List</button>
             </section>
         </article>
 
         <article class="card container__product-list">
+
             <div class="list-header">
                 <p>Qtde.</p>
                 <p>Product</p>
@@ -93,6 +93,7 @@
             </div>
             <div class="list-footer">
 							<button class="button is-danger" id="btn-delete-itens"><i class="fa fa-trash"></i></button>
+								<button data-tooltip="Copied!" class="button tooltip" id="btn-copy"><i class="fa fa-clipboard"></i></button>
                 <p class="list-footer__total">Total $ <span class="list-footer__total-value">00.00</span></p>
             </div>
         </article>
@@ -100,7 +101,7 @@
     </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/dependencyLibs/inputmask.dependencyLib.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/inputmask/inputmask.min.js"></script>
-
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.6.0/clipboard.min.js"></script>
     <script src="./src/js/product.js"></script>
     <script src="./src/js/index.js"></script>
     <script src="./src/js/masks.js"></script>
