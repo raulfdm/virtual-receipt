@@ -1,6 +1,7 @@
 const gulp = require('gulp');
 const postcss = require('gulp-postcss');
 const postImport = require('postcss-import');
+const browser = require('browser-sync');
 const cssNano = require('gulp-cssnano');
 const jsmin = require('gulp-jsmin');
 const rename = require('gulp-rename');
@@ -52,3 +53,18 @@ gulp.task('ghpages', () => {
 })
 
 gulp.task('build', ['clean'], () => gulp.start(['babel', 'css', 'html']))
+
+gulp.task('sv', () => {
+
+    browser.init({
+        server: {
+            baseDir: 'dist',
+            index: "index.html"
+        }
+    });
+
+    gulp
+        .watch('src/**/*.*', ['build'])
+        .on('change', browser.reload);
+
+});
