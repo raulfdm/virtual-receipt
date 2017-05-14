@@ -1,7 +1,7 @@
 # Food List Creator
 > :page_facing_up: :department_store: A simple way to create a shopping list
 
-![Site Preview](http://i.imgur.com/S6z1SPl.png)
+![Site Preview](http://i.imgur.com/MYyf08i.png)
 
 ## Motivation
 I use to control my expanses on [Mobills](mobills.com.br) (a personal finance application). So, every time when I go shopping I create an expanse with the **total** value. However, personally I prefer save what I bought as well, even thought the application doesn't have a specific field for it, only *more information* field.
