@@ -5,7 +5,7 @@
 ![Site Preview](http://i.imgur.com/MYyf08i.png)
 
 ## Motivation
-I use to control my expanses on [Mobills](mobills.com.br) (a personal finance application). So, every time when I go shopping I create an expanse with the **total** value. However, personally I prefer save what I bought as well, even thought the application doesn't have a specific field for it, only *more information* field.
+I use to control my expanses on [Mobills](https://www.mobills.com.br/) (a personal finance application). So, every time when I go shopping I create an expanse with the **total** value. However, personally I prefer save what I bought as well, even thought the application doesn't have a specific field for it, only *more information* field.
 Therefore, I write manually on some notepad each item and it value, copy this information and paste into it field.
 
 ## Solution
