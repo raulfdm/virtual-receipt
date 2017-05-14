@@ -1,4 +1,5 @@
 # Food List Creator
+![https://img.shields.io/badge/building-passing-brightgreen.svg](https://img.shields.io/badge/building-passing-brightgreen.svg)
 > :page_facing_up: :department_store: A simple way to create a shopping list
 
 ![Site Preview](http://i.imgur.com/MYyf08i.png)
