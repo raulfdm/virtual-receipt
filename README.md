@@ -1,6 +1,6 @@
-# Food List Creator
+# Virtual Receipt
 ![https://img.shields.io/badge/building-passing-brightgreen.svg](https://img.shields.io/badge/building-passing-brightgreen.svg)
-> :page_facing_up: :department_store: A simple way to create a shopping list
+> :page_facing_up: :department_store: A simple way to generate your virtual receipt
 
 ![Site Preview](http://i.imgur.com/MYyf08i.png)
 
